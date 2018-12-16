@@ -1,0 +1,16 @@
+{
+
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "供货商",
+  "navigationBarTextStyle": "black",
+
+  "usingComponents": {
+  	"i-button": "../../dist/button/index"
+	}
+
+
+
+
+
+}

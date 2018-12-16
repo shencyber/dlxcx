@@ -1,0 +1,36 @@
+{
+  "pages": [
+    "pages/ghs/ghs",
+    "pages/order/order",
+    "pages/cart/cart",
+    "pages/me/me",
+    "pages/ghs/add/add",
+    "pages/ghs/detail/detail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/ghs/ghs",
+        "text": "供货商"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "订单"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我"
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+<!--pages/ghs/add/add.wxml 添加供货商-->
+<text>添加供货商</text>
+
+
+<i-row>
+<i-col span="18">
+	<i-input bind:change="getNo" value="{{ ghsno }}"  title="供货商编号" autofocus placeholder="编号" />
+	
+</i-col>
+
+<i-col span="6">
+<i-button  bind:click="search" type="info" size="small" inline="true">搜索</i-button>
+</i-col>
+
+</i-row>
+
+
+
+<i-card wx:if="{{name}}"  title="供货商" extra="" >
+	<view slot="content">{{name}}</view>
+</i-card>
+
+
+<view class="bt">
+<i-button  bind:click="add" type="success"> 确认</i-button>
+</view>
+<i-toast id="toast" />

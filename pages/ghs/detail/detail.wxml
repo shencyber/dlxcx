@@ -1,0 +1,11 @@
+<!--pages/ghs/detail/detail.wxml-->
+<text>pages/ghs/detail/detail.wxml</text>
+
+<view wx:for="{{good}}">
+
+<image src="{{item.urls[0]}}"></image>
+<text>{{item.name}}</text>
+<text>{{item.unitprice}}</text>
+</view>
+
+<i-button bind:click="more" type="primary">加载更多</i-button>
