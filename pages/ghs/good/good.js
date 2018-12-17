@@ -1,4 +1,5 @@
 // pages/ghs/detail/detail.js
+const { $Toast } = require('../../../dist/base/index');
 var App = getApp();
 Page({
 
@@ -7,15 +8,18 @@ Page({
    */
   data: {
     ghsid:'', //供货商id
+    ghsname:'', //供货商名称
     currentpage:1,
     pagesize:1,
     total:0,
 
-    good:[]
+    good:[],
+    totalChoosed:0,  // 购物车该供货商选择的商品总数量
 
   },
 
   getData(){
+    let _this = this ;
     App.api.getApi(
       '/index/goods/getGoodsListByGhsId',
       {
@@ -37,7 +41,18 @@ Page({
             good:tmp
           });
 
-        console.log( this.data.good );
+        console.log( "tmp" , this.data.good );
+
+        let tmp_total = 0 ;
+        for(let i in tmp)
+        {
+          if( tmp[i]['id'] == _this.data.ghsid )
+          {
+             ++tmp_total;
+          }
+        }
+        if( tmp_total > 0 ) _this.setData({totalChoosed : tmp_total});
+
       }
       else
       {
@@ -78,6 +93,17 @@ Page({
         ++cart[i]['amount'] ;
         App.globalData.cart = cart ;
         console.log( App.globalData.cart );
+
+        $Toast({
+            content: '添加成功',
+            type: 'success'
+        });
+        let tmp = ++_this.data.totalChoosed ; 
+        _this.setData({
+          total:tmp
+        });
+
+
         return ;
       }
     }
@@ -86,6 +112,16 @@ Page({
 
     App.globalData.cart = cart ;
     console.log( App.globalData.cart );
+
+    $Toast({
+            content: '添加成功',
+            type: 'success'
+        });
+    let tmp = ++_this.data.totalChoosed ; 
+    _this.setData({
+      total:tmp
+    });
+
     // return ;
   },
 
@@ -96,8 +132,23 @@ Page({
   onLoad: function (options) {
     console.log( options );
     this.data.ghsid = options.ghsid ;
+    this.data.ghsname = options.ghsname ;
+    wx.setNavigationBarTitle({title:options.ghsname});
     this.getData();
+
+
   },
+
+
+  toDetail(e)
+  {
+    let gid = e.currentTarget.dataset.gid ;
+    // console.log( "to detail" , e.currentTarget.dataset.gid );
+    wx.navigateTo({url:`../detail/detail?gid=${gid}`});
+  }
+
+
+
 
   
 })

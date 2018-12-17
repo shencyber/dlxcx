@@ -1,12 +1,14 @@
 {
 
-  "backgroundTextStyle": "light",
+  "backgroundTextStyle": "#000",
   "navigationBarBackgroundColor": "#fff",
   "navigationBarTitleText": "供货商",
   "navigationBarTextStyle": "black",
 
   "usingComponents": {
-  	"i-button": "../../dist/button/index"
+  	"i-button"     : "../../dist/button/index",
+  	"i-cell-group" : "../../dist/cell-group/index",
+    "i-cell"       : "../../dist/cell/index"
 	}
 
 

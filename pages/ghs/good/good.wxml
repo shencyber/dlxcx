@@ -1,12 +1,36 @@
-<!--pages/ghs/detail/detail.wxml-->
-<text>pages/ghs/detail/detail.wxml</text>
+<!--pages/ghs/good/good.wxml-->
+<view class="box">
+<i-row style="width:100%;">
 
-<view wx:for="{{good}}">
+<i-col bindtap="toDetail" data-gid="{{item.id}}" wx:for="{{good}}" i-class="col-class" span="12" >
+
+<image    class="cover" src="{{item.urls[0]}}"></image>
+<!-- <text class="name">dfnlkgnfdlkngkdnfglndlkg</text> -->
+<text class="name">{{item.name}}</text>
+<text class="price">￥{{item.unitprice}}</text>
+<view class="bt" bindtap="addToCart" data-index="{{index}}"><i-icon  type="add" size="30"/></view>
+
+</i-col>
+
+
+</i-row>
+
+
+<!-- <view wx:for="{{good}}">
 
 <image src="{{item.urls[0]}}"></image>
 <text>{{item.name}}</text>
 <text>{{item.unitprice}}</text>
 <view bindtap="addToCart" data-index="{{index}}"><i-icon  type="add" size="50"/></view>
-</view>
+</view> -->
 
 <i-button bind:click="more" type="primary">加载更多</i-button>
+
+
+<view class='cart'>total:{{total}}</view>
+
+<i-toast id="toast" />
+
+
+
+</view>

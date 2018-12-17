@@ -5,6 +5,7 @@
     "pages/cart/cart",
     "pages/me/me",
     "pages/ghs/add/add",
+    "pages/ghs/good/good",
     "pages/ghs/detail/detail"
   ],
   "window": {
