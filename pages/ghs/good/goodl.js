@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    ghsid:'', //供货商id
     currentpage:1,
     pagesize:1,
     total:0,
@@ -26,7 +26,7 @@ Page({
       }
     )
     .then(res=>{
-
+      console.log(res);
       if( 0 == res.data.status )
       {
 
@@ -61,11 +61,42 @@ Page({
   },
 
   /**
+   * [addToCart 添加至购物车]
+   * @param {[type]} currentTarget [事件对象]
+   */
+  addToCart( e ){
+    let _this = this ;
+   
+    let index = e.currentTarget.dataset.index;
+   
+    let cart = App.globalData.cart;
+
+    for( let i in cart )
+    {
+      if( cart[i]['gid'] ==  _this.data.good[index]['id'] )
+      {
+        ++cart[i]['amount'] ;
+        App.globalData.cart = cart ;
+        console.log( App.globalData.cart );
+        return ;
+      }
+    }
+
+    cart.push( {gid:_this.data.good[index]['id'] , ghsid:_this.data.ghsid , amount:1} );
+
+    App.globalData.cart = cart ;
+    console.log( App.globalData.cart );
+    // return ;
+  },
+
+
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     console.log( options );
-    this.ghsid = options.ghsid ;
+    this.data.ghsid = options.ghsid ;
+    this.getData();
   },
 
   

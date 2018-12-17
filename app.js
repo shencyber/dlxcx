@@ -38,6 +38,9 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+
+    //购物车数据,数据结构[{gid:1,ghsid:2,amount:1},{gid:2,ghsid:2,amount:1}]
+    cart:[]  
   }
 })

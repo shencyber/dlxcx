@@ -6,6 +6,7 @@
 <image src="{{item.urls[0]}}"></image>
 <text>{{item.name}}</text>
 <text>{{item.unitprice}}</text>
+<view bindtap="addToCart" data-index="{{index}}"><i-icon  type="add" size="50"/></view>
 </view>
 
 <i-button bind:click="more" type="primary">加载更多</i-button>
