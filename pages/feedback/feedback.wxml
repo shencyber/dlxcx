@@ -1,0 +1,14 @@
+<!--pages/feedback/feedback.wxml-->
+<view style="width:90%;text-align:center;margin:0 auto;">
+	
+<image src="/image/success.jpg" style="width:80%;height:350rpx;"></image>
+
+</view>
+<view style="text-align:center;margin-top:20rpx;">
+	
+<text>请及时联系供货商</text>
+</view>
+
+<view style="border-top:1px solid gray;margin-top:50rpx;width:90%;margin-left: 5%;"></view>
+
+

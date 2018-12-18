@@ -5,11 +5,10 @@
     "navigationBarTitleText": "下单",
     "navigationBarTextStyle": "black",
     "usingComponents": {
-	    "i-panel": "../../dist/panel/index"
-	    ,"i-card": "../../dist/card/index"
-	    ,"i-row": "../../dist/row/index"
-        ,"i-col": "../../dist/col/index"
-        ,"i-icon": "../../dist/icon/index"
+	    "i-panel"   : "../../dist/panel/index"
+	    ,"i-card"   : "../../dist/card/index"
+        ,"i-input"  : "../../dist/input/index"
+        ,"i-button" : "../../dist/button/index"
 	}
   
 }

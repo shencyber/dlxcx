@@ -191,7 +191,8 @@ Page({
       // console.log( this.data. );
     let index = e.currentTarget.dataset.index ; 
     let ghsid = this.data.ghsid[index];
-    wx.navigateTo({ url : `../xiadandetail/xiadandetail?ghsid=${ghsid}` });
+    let ghsname = this.data.ghs[index]['ghsname'];
+    wx.navigateTo({ url : `../xiadandetail/xiadandetail?ghsid=${ghsid}&ghsname=${ghsname}` });
   }
 
 
