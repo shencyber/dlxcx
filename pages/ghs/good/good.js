@@ -22,28 +22,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log( options );
-    this.data.ghsid = options.ghsid ;
-    this.data.ghsname = options.ghsname ;
+    console.log( "page load  ghsid" , options.ghsid );
+    this.setData({ ghsid : options.ghsid });
+    this.setData({ ghsname : options.ghsname });
+    // this.data.ghsid = options.ghsid ;
+    // this.data.ghsname = options.ghsname ;
     wx.setNavigationBarTitle({title:options.ghsname});
-    this.getData();
+    this.getData( options.ghsid );
 
 
   },
 
-  getData(){
+  getData( ghsid ){
     let _this = this ;
     App.api.getApi(
       '/index/goods/getGoodsListByGhsId',
       {
-        ghsid :1,
+        ghsid :ghsid,
         type  :1,
         currentpage:this.data.currentpage,
         pagesize:this.data.pagesize
       }
     )
     .then(res=>{
-      console.log(res);
+      console.log("res" , res);
       if( 0 == res.data.status )
       {
 
@@ -81,10 +83,14 @@ Page({
 
   /*加载更多*/
   more(){
-    if( this.data.currentpage*this.data.pagesize < this.data.total )
+    let _this = this ;
+    console.log( this.data.currentpage );
+    console.log( this.data.pagesize );
+    console.log( this.data.total );
+    if( _this.data.currentpage*_this.data.pagesize < _this.data.total )
     {
-      this.data.currentpage++;
-      this.getData();
+      _this.data.currentpage++;
+      _this.getData( _this.data.ghsid );
     }
   },
 
@@ -99,12 +105,17 @@ Page({
    
     let cart = App.globalData.cart;
 
+    // console.log(App.globalData.cart);
+    // return ;
     for( let i in cart )
     {
       if( cart[i]['gid'] ==  _this.data.good[index]['id'] )
       {
+    // console.log( "_this.data.gid" , _this.data.good[index]['id'] );
+
         ++cart[i]['amount'] ;
         App.globalData.cart = cart ;
+        // cart = [] ;
         console.log( App.globalData.cart );
 
         $Toast({
@@ -121,9 +132,16 @@ Page({
       }
     }
 
-    cart.push( {gid:_this.data.good[index]['id'] , ghsid:_this.data.ghsid , amount:1} );
+    // console.log( "_this.data.gid" , _this.data.good[index]['id'] );
+    cart.push( 
+      {
+        gid:_this.data.good[index]['id'] , gname:_this.data.good[index]['name'],amount:1, 
+        unitprice:_this.data.good[index]['unitprice'],cover:_this.data.good[index]['urls'][0],
+        ghsid:_this.data.ghsid , ghsname:_this.data.ghsname
+      } );
 
     App.globalData.cart = cart ;
+        // cart = [] ;
     console.log( App.globalData.cart );
 
     $Toast({
@@ -145,9 +163,11 @@ Page({
   toDetail(e)
   {
     let gid = e.currentTarget.dataset.gid ;
-    let ghsid = e.currentTarget.dataset.gid ;
+    let ghsid = e.currentTarget.dataset.ghsid ;
+    let ghsname = e.currentTarget.dataset.ghsname ;
+    console.log( e.currentTarget.dataset );
     // console.log( "to detail" , e.currentTarget.dataset.gid );
-    wx.navigateTo({url:`../detail/detail?gid=${gid}&ghsid=${ghsid}`});
+    wx.navigateTo({url:`../detail/detail?gid=${gid}&ghsid=${ghsid}&ghsname=${ghsname}`});
   }
 
 

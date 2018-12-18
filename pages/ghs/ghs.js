@@ -6,10 +6,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    ghs:[]
+    ghs:[],
+
     // ghsid  :'' ,//供货商id
     // ghsname:'' //供货商name
+  },
 
+
+  onShow(){
+    this.getGhsList( 1 );
   },
 
   gotofun(){
@@ -24,8 +29,8 @@ Page({
    * @param  {[type]} $dlsid [代理商id]
    * @return {[type]}        [description]
    */
-  getGhsList( $dlsid ){
-    App.api.getApi( "/index/dls/getGhsList" , {dlsid:1} )
+  getGhsList( dlsid ){
+    App.api.getApi( "/index/dls/getGhsList" , {dlsid:dlsid} )
     .then(res=>{
       console.log( res );
       if( 0 == res.data.status )
@@ -56,61 +61,5 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    
-  },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    this.getGhsList();
-
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

@@ -2,9 +2,9 @@
 <view class="box">
 <i-row style="width:100%;">
 
-<i-col bindtap="toDetail" data-gid="{{item.id}}" wx:for="{{good}}" i-class="col-class" span="12" >
+<i-col   wx:for="{{good}}" i-class="col-class" span="12" >
 
-<image    class="cover" src="{{item.urls[0]}}"></image>
+<image  bindtap="toDetail" data-gid="{{item.id}}" data-ghsid="{{ghsid}}" data-ghsname="{{ghsname}}"  class="cover" src="{{item.urls[0]}}"></image>
 <!-- <text class="name">dfnlkgnfdlkngkdnfglndlkg</text> -->
 <text class="name">{{item.name}}</text>
 <text class="price">￥{{item.unitprice}}</text>
@@ -24,7 +24,7 @@
 <view bindtap="addToCart" data-index="{{index}}"><i-icon  type="add" size="50"/></view>
 </view> -->
 
-<i-button bind:click="more" type="primary">加载更多</i-button>
+<i-button bindtap="more" type="primary">加载更多</i-button>
 
 
 <view class='cart'>total:{{total}}</view>

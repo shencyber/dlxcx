@@ -7,8 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    ghsid:'',  //供货商id
     goodsid:'' , //商品id
+    ghsid:'',  //供货商id
+    ghsname:'',  //供货商name
 
     detail:'', //详情
 
@@ -19,10 +20,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log( options );
     console.log( "ghsid" , options.ghsid );
     console.log( "goodsid" , options.gid );
-    this.data.ghsid = options.ghsid;
+    console.log( "ghsname" , options.ghsname );
     this.data.goodsid = options.gid;
+    this.data.ghsid = options.ghsid;
+    this.data.ghsname = options.ghsname;
     this.getDetail(options.gid);
   },
 
@@ -79,7 +83,10 @@ Page({
       }
     }
 
-    cart.push( {gid:_this.data.goodsid , ghsid:_this.data.ghsid , amount:1} );
+    cart.push( {
+        gid:_this.data.goodsid , gname:_this.data.detail.name ,amount:1,
+        ghsid:_this.data.ghsid , ghsname:_this.data.ghsname
+      });
 
     App.globalData.cart = cart ;
     console.log( App.globalData.cart );

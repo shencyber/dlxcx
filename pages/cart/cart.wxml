@@ -1,2 +1,52 @@
 <!--miniprogram/pages/cart.wxml-->
-<text>miniprogram/pages/cart.wxml</text>
+<view class="box">
+	
+	
+
+
+
+<view wx:for="{{ghs}}" wx:key="{{item.ghsid}}" style="margin-bottom:20rpx;">
+
+	<!-- <i-panel title="{{item.ghsname}}">
+	    <view style="padding: 15px;">PANEL 内容区域</view>
+	</i-panel> -->
+
+	<!-- thumb="{{cart[index][0]['cover']}}" -->
+	<i-card title="{{item.ghsname}}" full="true" extra="" >
+	    <view slot="content">
+	    	
+	    	<i-row  wx:for="{{cart[index]}}" wx:key="{{subitem.gid}}" wx:for-index="subindex" wx:for-item="subitem">
+	    		<i-col span="6"   >
+	    			<image  model="scaleToFill" class="cover" src="{{subitem.cover}}"></image>
+	    		</i-col>
+	    		<i-col span="10"  >
+	    			<i-row>
+	    				<i-col> <text>{{subitem.gname}}</text> </i-col>
+	    			</i-row>
+
+	    			<i-row>
+	    				<view class="bt" bindtap="minus" data-index="{{index}}" data-subindex="{{subindex}}" >-</view>	
+	    				<view class="amount" >{{ subitem.amount }}</view>
+	    				<view class="bt" bindtap="add" data-index="{{index}}" data-subindex="{{subindex}}" >+</view>	
+	    				<button type="warn" size="mini" bindtap="deleteGoods" data-index="{{index}}" data-subindex="{{subindex}}">删除</button>
+	    				
+	    			</i-row>		
+
+
+	    		</i-col>
+	    	</i-row>
+
+	    </view>
+
+	    <view slot="footer">
+	    	<button type="primary" bindtap="xiadan" data-index="{{index}}"  style="width:50%;height:100rpx;">下单</button>
+	    </view>
+
+
+	</i-card>
+
+	
+
+</view>
+
+</view>

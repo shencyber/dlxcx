@@ -6,7 +6,8 @@
     "pages/me/me",
     "pages/ghs/add/add",
     "pages/ghs/good/good",
-    "pages/ghs/detail/detail"
+    "pages/ghs/detail/detail",
+    "pages/xiadandetail/xiadandetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

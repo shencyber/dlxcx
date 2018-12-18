@@ -1,1 +1,26 @@
 /* miniprogram/pages/cart.wxss */
+
+.cover{
+	width:100%;
+	height:300rpx;
+}
+
+.bt{
+	display:inline-block;
+	width:100rpx;
+	height:100rpx;
+	font-size:100rpx;
+	line-height:100rpx;
+	text-align:center;
+	border:1px solid red;
+}
+
+.amount{
+	position: relative;
+	top:-15rpx;
+	margin:0 10rpx;
+	display:inline-block;
+	height:100rpx;
+	line-height:100rpx;
+	font-size:50rpx;
+}
