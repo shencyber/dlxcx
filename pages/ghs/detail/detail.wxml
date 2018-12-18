@@ -1,2 +1,39 @@
 <!--pages/ghs/detail/detail.wxml-->
-<text>pages/ghs/detail/detail.wxml</text>
+<view class="box">
+	
+<!-- <view  class="album"> -->
+	
+<swiper
+  indicator-dots="true"
+  autoplay="{{autoplay}}"
+  interval="{{interval}}"
+  duration="{{duration}}"
+>
+  <block wx:for="{{detail.urls}}">
+    <swiper-item>
+      <image mode="scaleToFill" src="{{item}}" class="slide-image" width="200" height="400" />
+    </swiper-item>
+  </block>
+</swiper>
+<!-- </view> -->
+
+<text>{{detail.unitprice}}元</text>
+<view style="border:1px solid red;overflow:hidden;text-overflow: ellipsis;">
+<text >{{detail.name}}</text>
+</view>
+
+<view>
+	<text>{{detail.desc}}</text>
+</view>
+
+
+<button bindtap="addToCart" type="primary" size="mini">加入购物车</button>
+<button type="primary" size="mini">去下单</button>
+
+
+
+<text>{{totalChoosed}}</text>
+
+</view>
+
+<i-toast id="toast" />

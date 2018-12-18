@@ -1,67 +1,100 @@
 // pages/ghs/detail/detail.js
+const { $Toast } = require('../../../dist/base/index');
+var App = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    gid:'' , //商品id
+    ghsid:'',  //供货商id
+    goodsid:'' , //商品id
+
+    detail:'', //详情
+
+    totalChoosed:0,  // 购物车该供货商选择的商品总数量
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.data.gid = options.gid;
-    console.log( this.data.gid );
+    console.log( "ghsid" , options.ghsid );
+    console.log( "goodsid" , options.gid );
+    this.data.ghsid = options.ghsid;
+    this.data.goodsid = options.gid;
+    this.getDetail(options.gid);
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * [getDetail 获取商品详情]
+   * @param  {[type]} $ghsid [goodsid]
+   * @return {[type]}        [description]
    */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  getDetail(goodsid){
+    App.api.getApi(
+      '/index/goods/getGoodsById' , {gid:goodsid}
+    )
+    .then(res=>{
+      console.log( "res" , res );
+      if( 0 == res.data.status ){ this.setData({ detail : res.data.result });  console.log( this.data.detail.urls ) }
+      else
+      {
+        console.log( "get error" , res)  ;
+      }
+    })
+    .catch(err=>{
+      console.log("getDetail" , err);
+    });
   }
+
+
+  ,  /**
+   * [addToCart 添加至购物车]
+   */
+  addToCart( e ){
+    let _this = this ;
+   
+    let cart = App.globalData.cart;
+
+    for( let i in cart )
+    {
+      if( cart[i]['gid'] ==  _this.data.goodsid )
+      {
+        ++cart[i]['amount'] ;
+        App.globalData.cart = cart ;
+        console.log( App.globalData.cart );
+
+        $Toast({
+            content: '添加成功',
+            type: 'success'
+        });
+
+        let tmp = ++_this.data.totalChoosed ; 
+        _this.setData({
+          totalChoosed:tmp
+        });
+
+        return ;
+      }
+    }
+
+    cart.push( {gid:_this.data.goodsid , ghsid:_this.data.ghsid , amount:1} );
+
+    App.globalData.cart = cart ;
+    console.log( App.globalData.cart );
+
+    $Toast({
+            content: '添加成功',
+            type: 'success'
+        });
+
+    let tmp = ++_this.data.totalChoosed ; 
+    _this.setData({
+      totalChoosed:tmp
+    });
+
+  },
+
+
 })

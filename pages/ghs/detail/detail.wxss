@@ -1,1 +1,13 @@
 /* pages/ghs/detail/detail.wxss */
+
+.box{
+	min-height:100vh;
+	background-color:#eee;
+}
+
+.album{
+	width:100%;
+	height:400rpx;
+	border:1px solid red;
+	text-align:center;
+}

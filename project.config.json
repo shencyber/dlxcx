@@ -37,13 +37,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 0,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "供货商商品列表",
 					"pathName": "pages/ghs/good/good",
-					"query": "ghsid=1"
+					"query": "ghsid=1&ghsname=AAA"
 				},
 				{
 					"id": 1,

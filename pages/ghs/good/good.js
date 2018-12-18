@@ -18,6 +18,19 @@ Page({
 
   },
 
+   /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    console.log( options );
+    this.data.ghsid = options.ghsid ;
+    this.data.ghsname = options.ghsname ;
+    wx.setNavigationBarTitle({title:options.ghsname});
+    this.getData();
+
+
+  },
+
   getData(){
     let _this = this ;
     App.api.getApi(
@@ -126,25 +139,15 @@ Page({
   },
 
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    console.log( options );
-    this.data.ghsid = options.ghsid ;
-    this.data.ghsname = options.ghsname ;
-    wx.setNavigationBarTitle({title:options.ghsname});
-    this.getData();
-
-
-  },
+ 
 
 
   toDetail(e)
   {
     let gid = e.currentTarget.dataset.gid ;
+    let ghsid = e.currentTarget.dataset.gid ;
     // console.log( "to detail" , e.currentTarget.dataset.gid );
-    wx.navigateTo({url:`../detail/detail?gid=${gid}`});
+    wx.navigateTo({url:`../detail/detail?gid=${gid}&ghsid=${ghsid}`});
   }
 
 
