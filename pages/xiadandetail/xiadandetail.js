@@ -1,5 +1,8 @@
 // pages/xiadandetail/xiadandetail.js
 var App = getApp();
+
+const { $Toast } = require('../../dist/base/index');
+
 Page({
 
   /**
@@ -73,15 +76,6 @@ Page({
    */
   ,postOrder(){
 
-    //   dlsid : 1 ,  //代理商id
-    //   ghsid : '' ,  // 供货商id
-    //   goods : [] ,  // 商品信息 { gid-商品id , amount-数量 , unitprice-单价 }
-    // };
-    // let postData = {
-
-    // {
-  
-
   //debug  供货商id dlsid写死了
     let postData = {
       "ghsid":1,
@@ -113,11 +107,32 @@ Page({
       console.log( res );
       if( 0 ==res.data.status )
       {
-        wx.navigateTo({url:'../feedback/feedback'});
+        // console.log( "App.globalData.cart.lenght" , App.globalData.cart.lenght );
+        // 清除globalData.cart内对应的购物车数据
+        for( let i =App.globalData.cart.length-1 ; i>=0 ; i--   )
+        {
+          console.log( "cart " , App.globalData.cart[i]['ghsid'] );
+          console.log( "this" , this.data.ghsid );
+
+          if( App.globalData.cart[i]['ghsid'] == this.data.ghsid )
+          {
+            App.globalData.cart.splice( i , 1 );
+          }
+        }
+        $Toast({
+                content: '下单成功',
+                type: 'success' ,
+                duration:1
+            });
+
+             setTimeout(()=>{
+              wx.redirectTo({ url : '../feedback/feedback' })
+             } , 1200)
       }
       else
       {
         console.log( res );
+        
       }
 
     })

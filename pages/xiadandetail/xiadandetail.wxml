@@ -12,3 +12,6 @@
 </i-panel>
 
 <i-button  type="primary" bind:click="postOrder" style="margin-top:30rpx;">确认下单</i-button>
+
+
+<i-toast id="toast" />
