@@ -10,7 +10,7 @@ Page({
     ghsid:'', //供货商id
     ghsname:'', //供货商名称
     currentpage:1,
-    pagesize:1,
+    pagesize:10,
     total:0,
 
     good:[],
@@ -91,6 +91,13 @@ Page({
     {
       _this.data.currentpage++;
       _this.getData( _this.data.ghsid );
+    }
+    else
+    {
+      $Toast({
+            content: '没有新的商品了',
+            type: 'warning'
+        });
     }
   },
 

@@ -8,8 +8,11 @@
 
 .col-class{
 	padding:2px;
+	margin-bottom: 10rpx;
 	height:550rpx;
-	border:1px solid green;
+	
+	box-shadow: 1px 1px 6px gray;
+
 }
 .cover{
 	width:100%;
@@ -21,9 +24,11 @@
 .name{
 	display:inline-block;
 	width:100%;
-	border:1px solid green;
-	text-overflow:ellipsis;
+	height:50rpx;
+	line-height: 50rpx;
+	/*border:1px solid green;*/
 	overflow:hidden;
+	text-overflow:ellipsis;
 }
 
 .price{
@@ -46,8 +51,9 @@
 .cart{
 	display:block;
 	position:fixed;
-	bottom:1px;
+	bottom:0;
 	width:100vw;
 	height:50rpx;
 	border:1px solid red;
+	background-color:#fff;
 }

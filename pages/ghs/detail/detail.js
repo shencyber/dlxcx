@@ -37,11 +37,15 @@ Page({
    */
   getDetail(goodsid){
     App.api.getApi(
-      '/index/goods/getGoodsById' , {gid:goodsid}
+      '/index/goods/getGoodsById' , {goodsid:goodsid}
     )
     .then(res=>{
       console.log( "res" , res );
-      if( 0 == res.data.status ){ this.setData({ detail : res.data.result });  console.log( this.data.detail.urls ) }
+      if( 0 == res.data.status )
+      { 
+        this.setData({ detail : res.data.result });  
+        console.log( this.data.detail.urls ) 
+      }
       else
       {
         console.log( "get error" , res)  ;
@@ -52,6 +56,26 @@ Page({
     });
   }
 
+
+  /**
+   * 预览照片
+   */
+  ,preview(){
+
+    wx.previewImage(
+    {
+
+      urls :this.data.detail.longUrls
+    });
+
+  }
+
+  /**
+   * [gotocart 跳转到购物车]
+   */
+  ,gotocart(){
+    wx.switchTab({url:'../../cart/cart'});
+  }
 
   ,  /**
    * [addToCart 添加至购物车]

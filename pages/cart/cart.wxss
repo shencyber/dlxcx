@@ -9,10 +9,12 @@
 	display:inline-block;
 	width:100rpx;
 	height:100rpx;
+	line-height:100rpx;
+	border-radius:50%;
 	font-size:100rpx;
 	line-height:100rpx;
 	text-align:center;
-	border:1px solid red;
+	border:1px solid #FF6347;
 }
 
 .amount{

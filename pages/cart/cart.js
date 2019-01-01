@@ -11,13 +11,21 @@ Page({
     ghs:[],
     cart:[]  //购物车数据，根据供货商id来区分
 
+    ,nothing:false //购物车内是否有数据
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onShow: function () {
+    if( !App.globalData.cart.length )
+      this.setData({nothing:true});
+    else
+    {
+      
+      this.setData({nothing:false});
       this.sperate( App.globalData.cart );
+    }
 
   },
 
@@ -80,18 +88,18 @@ Page({
     tmp[index][subindex]['amount']++;
     this.setData( {cart : tmp } );
     console.log( "cart" , this.data.cart );
-    console.log( "App" , App.globalData.cart );return ;
+    // console.log( "App" , App.globalData.cart );return ;
     
-    let gid = this.data.cart[index][subindex]['gid'] ; //
+    // let gid = this.data.cart[index][subindex]['gid'] ; //
     // 更新globalData内的数据
     let appCart = App.globalData.cart; 
-    for( let i in  appCart )
-    {
-      if( gid == appCart[i]['gid'] )
-      {
-        appCart[i]['amount']++ 
-      }
-    }
+    // for( let i in  appCart )
+    // {
+    //   if( gid == appCart[i]['gid'] )
+    //   {
+    //     appCart[i]['amount']++ ;
+    //   }
+    // }
     App.globalData.cart = appCart;
   }
 
@@ -103,28 +111,29 @@ Page({
   ,minus( e ){
     let index = e.currentTarget.dataset.index ; //
     let subindex = e.currentTarget.dataset.subindex ; //
+    console.log("index",index,"subindex",subindex);
     if( this.data.cart[index][subindex]['amount'] > 0 )
     {
       let tmp = this.data.cart;
       tmp[index][subindex]['amount']--;
       this.setData( {cart : tmp } );
-    }
-    // console.log( this.data.cart );
+    
+    console.log( this.data.cart );
 
-    let gid = this.data.cart[index][subindex]['gid'] ; //
-    // 更新globalData内的数据
+    // let gid = this.data.cart[index][subindex]['gid'] ; //
+    // // 更新globalData内的数据
     let appCart = App.globalData.cart; 
-    for( let i in  appCart )
-    {
-      if( gid == appCart[i]['gid'] )
-      {
-        appCart[i]['amount']++ 
-      }
-    }
+    // for( let i in  appCart )
+    // {
+    //   if( gid == appCart[i]['gid'] )
+    //   {
+    //     // appCart[i]['amount']--;
+    //   }
+    // }
 
-    App.globalData.cart = appCart;
+    // App.globalData.cart = appCart;
     console.log( App.globalData.cart );
-
+    }
 
   }
 

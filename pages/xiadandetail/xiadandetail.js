@@ -1,5 +1,8 @@
 // pages/xiadandetail/xiadandetail.js
 var App = getApp();
+// iviewui组件
+const { $Toast } = require('../../dist/base/index');
+
 Page({
 
   /**
@@ -23,7 +26,10 @@ Page({
    */
   onLoad: function (options) {
     this.data.ghsid = options.ghsid ;
-    this.data.ghsname = options.ghsname ;
+    // this.data.ghsname = options.ghsname ;
+    this.setData({
+      ghsname:options.ghsname
+    });
     console.log( this.data.ghsid );
     console.log( this.data.ghsname );
 
@@ -73,6 +79,8 @@ Page({
    */
   ,postOrder(){
 
+    console.log( "dsgonp" );
+    if( !this.checkPostData() ) return ;
     //   dlsid : 1 ,  //代理商id
     //   ghsid : '' ,  // 供货商id
     //   goods : [] ,  // 商品信息 { gid-商品id , amount-数量 , unitprice-单价 }
@@ -84,9 +92,9 @@ Page({
 
   //debug  供货商id dlsid写死了
     let postData = {
-      "ghsid":1,
+      "ghsid":this.data.ghsid,
       "ghsname" :this.data.ghsname ,
-      "dlsid":"2",
+      "dlsid":"2",  //bug
       "receivername":this.data.receiverName,
       "receiverphone":this.data.receiverPhone,
       "address":this.data.receiverAddress,
@@ -113,11 +121,27 @@ Page({
       console.log( res );
       if( 0 ==res.data.status )
       {
-        wx.navigateTo({url:'../feedback/feedback'});
+
+        // 清空过购物车内对应的供货商信息
+        let appCart = App.globalData.cart; 
+        for( let i in  appCart )
+        {
+          if( this.data.ghsid == appCart[i]['ghsid'] )
+          {
+            appCart[i]['amount']++ ;
+            appCart.splice( i , 1 );
+          }
+        }
+
+        wx.redirectTo({url:'../feedback/feedback'});
       }
       else
       {
         console.log( res );
+        $Toast({
+              content: '下单失败',
+              error: 'warning'
+          });
       }
 
     })
@@ -127,6 +151,38 @@ Page({
     });
 
 
+  }
+
+  ,checkPostData(){
+    console.log( "check" );
+    if( !this.data.receiverName )
+    {
+        $Toast({
+              content: '填写收件人姓名',
+              type: 'error'
+          });
+        return false ;
+    }
+
+    if( !this.data.receiverPhone || this.data.receiverPhone.length != 11 )
+    {
+        $Toast({
+              content: '收件人手机号格式错误',
+              type: 'error'
+          });
+        return false ;
+    }
+
+    if( !this.data.receiverAddress )
+    {
+        $Toast({
+              content: '填写收件人地址',
+              type: 'error'
+          });
+        return false ;
+    }
+
+    return true ;
   }
 
   

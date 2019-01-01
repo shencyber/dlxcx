@@ -11,3 +11,34 @@
 	border:1px solid red;
 	text-align:center;
 }
+
+.unit{
+	height:60rpx;
+	line-height:60rpx;
+}
+
+.caozuo{
+	position:fixed;
+	bottom:0;
+	width:100%;
+	border-top:1px solid gray;
+	background-color:#fff;
+}
+
+.cart{
+	display:inline-block;
+	/*position:fixed;
+	bottom:0;*/
+	width:30%;
+	height:80rpx;
+	line-height:80rpx;
+	background-color:#fff;
+}
+
+.bt{
+	float:right;
+	margin-left:10rpx;
+	/*width:30%;*/
+	height: 80rpx;
+	line-height: 80rpx;
+}

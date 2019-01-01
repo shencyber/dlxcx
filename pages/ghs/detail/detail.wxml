@@ -5,34 +5,35 @@
 	
 <swiper
   indicator-dots="true"
-  autoplay="{{autoplay}}"
-  interval="{{interval}}"
-  duration="{{duration}}"
+ 
 >
-  <block wx:for="{{detail.urls}}">
+  <block wx:for="{{detail.longUrls}}">
     <swiper-item>
-      <image mode="scaleToFill" src="{{item}}" class="slide-image" width="200" height="400" />
+      <image bindtap="preview" mode="scaleToFill" src="{{item}}" class="slide-image" width="200" height="400" />
     </swiper-item>
   </block>
 </swiper>
 <!-- </view> -->
 
-<text>{{detail.unitprice}}元</text>
-<view style="border:1px solid red;overflow:hidden;text-overflow: ellipsis;">
+<view class="unit" style="border-bottom:thin solid #aaa;">单价：<text style="color:red;">￥{{detail.unitprice}}</text>元 /{{detail.unit}}</view>
+<view style="overflow:hidden;text-overflow: ellipsis;border-bottom:thin solid #aaa;">
+<text style="font-weight: bold;">商品名称：</text>
 <text >{{detail.name}}</text>
 </view>
 
 <view>
+<text style="font-weight: bold;">商品描述：</text>
 	<text>{{detail.desc}}</text>
 </view>
 
 
-<button bindtap="addToCart" type="primary" size="mini">加入购物车</button>
-<button type="primary" size="mini">去下单</button>
+<view class="caozuo">
+  <text class="cart">total:{{totalChoosed}}</text>
+  <button class="bt" bindtap="gotocart" type="primary" size="mini">去下单</button>
+  <button class="bt" bindtap="addToCart" type="primary" size="mini">加入购物车</button>
+</view>
+  
 
-
-
-<text>{{totalChoosed}}</text>
 
 </view>
 

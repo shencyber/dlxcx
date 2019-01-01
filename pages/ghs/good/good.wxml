@@ -8,7 +8,7 @@
 <!-- <text class="name">dfnlkgnfdlkngkdnfglndlkg</text> -->
 <text class="name">{{item.name}}</text>
 <text class="price">￥{{item.unitprice}}</text>
-<view class="bt" bindtap="addToCart" data-index="{{index}}"><i-icon  type="add" size="30"/></view>
+<view class="bt" bindtap="addToCart" data-index="{{index}}"><i-icon  type="add" color="#fff" size="30"/></view>
 
 </i-col>
 
@@ -24,7 +24,7 @@
 <view bindtap="addToCart" data-index="{{index}}"><i-icon  type="add" size="50"/></view>
 </view> -->
 
-<i-button bindtap="more" type="primary">加载更多</i-button>
+<i-button  bindtap="more" type="primary">加载更多</i-button>
 
 
 <view class='cart'>total:{{total}}</view>

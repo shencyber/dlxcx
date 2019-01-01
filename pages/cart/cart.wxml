@@ -1,8 +1,9 @@
 <!--miniprogram/pages/cart.wxml-->
 <view class="box">
+<view wx:if="{{nothing}}" style="text-align: center;">
 	
-	
-
+<image  src="/image/none.jpg" style="width:80%;height:350rpx;"></image>
+</view>	
 
 
 <view wx:for="{{ghs}}" wx:key="{{item.ghsid}}" style="margin-bottom:20rpx;">
@@ -19,18 +20,24 @@
 	    		<i-col span="6"   >
 	    			<image  model="scaleToFill" class="cover" src="{{subitem.cover}}"></image>
 	    		</i-col>
-	    		<i-col span="10"  >
-	    			<i-row>
+	    		<i-col span="18" >
+	    			<!-- <i-row >
 	    				<i-col> <text>{{subitem.gname}}</text> </i-col>
-	    			</i-row>
+	    			</i-row> -->
 
-	    			<i-row>
-	    				<view class="bt" bindtap="minus" data-index="{{index}}" data-subindex="{{subindex}}" >-</view>	
-	    				<view class="amount" >{{ subitem.amount }}</view>
-	    				<view class="bt" bindtap="add" data-index="{{index}}" data-subindex="{{subindex}}" >+</view>	
-	    				<button type="warn" size="mini" bindtap="deleteGoods" data-index="{{index}}" data-subindex="{{subindex}}">删除</button>
+	    			<view style="width:100%;overflow: hidden;text-overflow: ellipsis;">{{subitem.gname}}</view>
+	    			<!-- <i-row> -->
+	    			<view style="text-align: right;">
+	    			<view class="bt" bindtap="minus" data-index="{{index}}" data-subindex="{{subindex}}" >-</view>	
+    				<view class="amount" >{{ subitem.amount }}</view>
+    				<view class="bt" bindtap="add" data-index="{{index}}" data-subindex="{{subindex}}" >+</view>	
+	    			</view>
+
+    				<view style="text-align:right;margin-top:10rpx;">
+    				<button type="warn" size="mini" bindtap="deleteGoods" data-index="{{index}}" data-subindex="{{subindex}}">删除</button>
+    				</view>
 	    				
-	    			</i-row>		
+	    			<!-- </i-row>		 -->
 
 
 	    		</i-col>
@@ -38,8 +45,13 @@
 
 	    </view>
 
-	    <view slot="footer">
-	    	<button type="primary" bindtap="xiadan" data-index="{{index}}"  style="width:50%;height:100rpx;">下单</button>
+	    <view slot="footer" >
+	    	<i-row >
+	    		<i-col span="12" offset="12">
+			    	<button type="primary" bindtap="xiadan" data-index="{{index}}"  style="width:100%;height:80rpx;line-height:80rpx;">下单</button>
+	    			
+	    		</i-col>
+	    	</i-row>
 	    </view>
 
 
