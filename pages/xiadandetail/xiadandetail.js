@@ -1,6 +1,6 @@
 // pages/xiadandetail/xiadandetail.js
 var App = getApp();
-// iviewui组件
+
 const { $Toast } = require('../../dist/base/index');
 
 Page({
@@ -79,17 +79,8 @@ Page({
    */
   ,postOrder(){
 
-    console.log( "dsgonp" );
     if( !this.checkPostData() ) return ;
-    //   dlsid : 1 ,  //代理商id
-    //   ghsid : '' ,  // 供货商id
-    //   goods : [] ,  // 商品信息 { gid-商品id , amount-数量 , unitprice-单价 }
-    // };
-    // let postData = {
-
-    // {
-  
-
+   
   //debug  供货商id dlsid写死了
     let postData = {
       "ghsid":this.data.ghsid,
@@ -103,6 +94,7 @@ Page({
       "goods":[]
       // "goods":[{"goodid":1,"unitprice":100,"amount":3},{"goodid":2,"unitprice":100,"amount":3}]
     }
+
     for( let i in this.data.goods )
     {
       postData['goods'].push({ 
@@ -111,6 +103,7 @@ Page({
         amount:this.data.goods[i]['amount'] 
       });
     }
+
     console.log( postData );
     // return ;
     App.api.postApi(
@@ -122,26 +115,39 @@ Page({
       if( 0 ==res.data.status )
       {
 
-        // 清空过购物车内对应的供货商信息
-        let appCart = App.globalData.cart; 
-        for( let i in  appCart )
+
+        // 清除globalData.cart内对应的购物车数据
+        for( let i =App.globalData.cart.length-1 ; i>=0 ; i--   )
         {
-          if( this.data.ghsid == appCart[i]['ghsid'] )
+          // console.log( "cart " , App.globalData.cart[i]['ghsid'] );
+          // console.log( "this" , this.data.ghsid );
+
+          if( App.globalData.cart[i]['ghsid'] == this.data.ghsid )
           {
-            appCart[i]['amount']++ ;
-            appCart.splice( i , 1 );
+            App.globalData.cart.splice( i , 1 );
           }
         }
 
-        wx.redirectTo({url:'../feedback/feedback'});
+        $Toast({
+            content: '下单成功',
+            type: 'success' ,
+            duration:1
+        });
+
+         setTimeout(()=>{
+          wx.redirectTo({ url : '../feedback/feedback' })
+         } , 1200)
+
       }
       else
       {
         console.log( res );
+
         $Toast({
               content: '下单失败',
-              error: 'warning'
+              type: 'error'
           });
+
       }
 
     })
