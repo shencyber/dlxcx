@@ -1,5 +1,14 @@
 <!--pages/ghs/good/good.wxml-->
 <view class="box">
+
+
+<view class="searchBar">
+	<input  type="text" name="" placeholder="搜索" style="float:left;width:80%;" />
+	<image class="searchicon" src="/image/searchicon.png" ></image>
+	
+</view>
+
+
 <i-row style="width:100%;">
 
 <i-col   wx:for="{{good}}" i-class="col-class" span="12" >
@@ -34,3 +43,21 @@
 
 
 </view>
+
+
+<!-- <view class="mask">
+
+	<view class='upload' style='height:auto;'>
+        <view wx:if='{{searchImgs}}' style="display:inline-block">
+          <image class="icon" src='{{searchImgs}}'   bindtap='previewImage' bindlongpress='action' ></image>
+        </view>
+        <view wx:if='{{!searchImgs}}' style="display:inline-block" bindtap="chooseImg">
+          <image src='/image/icon.png' class='icon' bindtap='upFun'> </image>
+        </view>
+    	
+    	<i-button  bindtap="search" type="primary">搜索</i-button>
+    </view>
+
+
+
+</view> -->
