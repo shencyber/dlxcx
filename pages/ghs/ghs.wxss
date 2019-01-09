@@ -4,3 +4,53 @@
 	min-height:100vh;
 	background-color:#eee;
 }
+
+
+
+/*遮罩层*/
+.mask{
+	position: absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background-color:rgba(0,0,0,.7);
+	/*pointer-events:none;*/
+}
+
+.upload {
+    height:auto;
+    background-color: #fff;
+    text-align: center;
+    padding-bottom:10px;
+}
+
+.icon {
+  width: 150rpx;
+  height: 150rpx;
+  margin-top: 20rpx;
+}
+
+
+
+
+/*搜索条*/
+.searchBar{
+	/*float:left;*/
+	width: 100%;
+	height:70rpx;
+	border:1px solid gray;
+	border-radius:4px;
+}
+.input{
+	float:left;
+	width:auto;
+	height:70rpx;
+	text-indent:10rpx;
+}
+.searchicon
+{
+	width : 70rpx;
+	height: 70rpx;
+	float:right;
+}
