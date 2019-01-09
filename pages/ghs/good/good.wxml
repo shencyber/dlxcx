@@ -4,7 +4,7 @@
 
 <view class="searchBar">
 	<input  type="text" name="" placeholder="搜索" style="float:left;width:80%;" />
-	<image class="searchicon" src="/image/searchicon.png" ></image>
+	<image bindtap="toggleMask" class="searchicon" src="/image/searchicon.png" ></image>
 	
 </view>
 
@@ -33,7 +33,7 @@
 <view bindtap="addToCart" data-index="{{index}}"><i-icon  type="add" size="50"/></view>
 </view> -->
 
-<i-button  bindtap="more" type="primary">加载更多</i-button>
+<i-button wx:if="{{showMore}}" bindtap="more" type="primary">加载更多</i-button>
 
 
 <view class='cart'>total:{{total}}</view>
@@ -45,9 +45,9 @@
 </view>
 
 
-<!-- <view class="mask">
+<view id="mask" wx:if="{{showMask}}" class="mask" bindtap="toggleMask">
 
-	<view class='upload' style='height:auto;'>
+	<view class='upload'  catchtap="a">
         <view wx:if='{{searchImgs}}' style="display:inline-block">
           <image class="icon" src='{{searchImgs}}'   bindtap='previewImage' bindlongpress='action' ></image>
         </view>
@@ -55,9 +55,9 @@
           <image src='/image/icon.png' class='icon' bindtap='upFun'> </image>
         </view>
     	
-    	<i-button  bindtap="search" type="primary">搜索</i-button>
+    	<!-- <i-button  bindtap="search" type="primary">搜索</i-button> -->
     </view>
 
 
 
-</view> -->
+</view>

@@ -17,6 +17,8 @@ Page({
     totalChoosed:0,  // 购物车该供货商选择的商品总数量
 
     searchImgs:'' , //需要搜索的图片
+    showMask:false ,  //是否显示mask
+    showMore:false ,  //是否显示【加载更多】
 
   },
 
@@ -196,6 +198,8 @@ Page({
           searchImgs:res.tempFilePaths
 
         });
+
+        _this.search();
       },
       fail(){
         console.log("获取图片失败");
@@ -256,7 +260,73 @@ Page({
    */
   ,search()
   {
-    console.log( this.data.searchImgs );
+    wx.showLoading({title:"搜索中" , mask:true });
+    // console.log( "search" , this.data.searchImgs );
+    let _this = this ;
+    // console.log(App.globalData.api+'/index/goods/searchGoodsByImage');
+    wx.uploadFile({
+      url : App.globalData.api+'/index/goods/searchGoodsByImage',
+      filePath:this.data.searchImgs[0],
+      name:'image',
+      formData:{
+        ghsid: _this.data.ghsid
+      },
+      success(res){
+
+        let _data = JSON.parse(res.data)
+        let _result = _data.result[0]['goods'] ; 
+        let _tmpData = [] ;
+        console.log(  _result  ) ;
+        for(let i in _result)
+        {
+          _tmpData.push({
+            id : _result[i]['id'],
+            name : _result[i]['name'],
+            // source : _result[i][''],
+            unitprice: _result[i]['unitprice'],
+            urls:[_this.data.searchImgs[0]]
+          });
+        }
+
+        _this.setData({
+          good : _tmpData
+        });
+
+        _this.setData({
+          showMask : false,
+        });
+
+        _this.setData({
+          showMore : false
+        });
+
+        console.log( _this.data.showMore );
+
+        wx.hideLoading();
+      }
+
+    });
+
+
+    
+
+
+
+  }
+
+  /**
+   * 显示隐藏mask
+   */
+  ,toggleMask(e)
+  {
+    // console.log(e)
+    this.setData({showMask:!this.data.showMask});
+  }
+
+  ,a(e)
+  {
+    // console.log(e)
+    // return false ;
   }
 
 
