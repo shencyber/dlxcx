@@ -20,12 +20,25 @@ Page({
     showMask:false ,  //是否显示mask
     showMore:false ,  //是否显示【加载更多】
 
-  },
+  }
+
+  ,init()
+  {
+    this.data.currentpage = 1  ;
+    this.data.pagesize    = 10 ; 
+    this.data.total       = 0  ;
+    // this.data.good        = [] ;
+    // this.data.searchImgs  = '' ;
+    this.data.showMask    = false ;
+    this.data.showMore    = false ;
+    this.setData({ good : [] });
+    this.setData({ searchImgs : '' });
+  }
 
    /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  ,onLoad: function (options) {
     console.log( "page load  ghsid" , options.ghsid );
     this.setData({ ghsid : options.ghsid });
     this.setData({ ghsname : options.ghsname });
@@ -35,9 +48,9 @@ Page({
     this.getData( options.ghsid );
 
 
-  },
+  }
 
-  getData( ghsid ){
+  ,getData( ghsid ){
     let _this = this ;
     App.api.getApi(
       '/index/goods/getGoodsListByGhsId',
@@ -274,34 +287,50 @@ Page({
       success(res){
 
         let _data = JSON.parse(res.data)
-        let _result = _data.result[0]['goods'] ; 
-        let _tmpData = [] ;
-        console.log(  _result  ) ;
-        for(let i in _result)
+        if( 0 == _data.status )
         {
-          _tmpData.push({
-            id : _result[i]['id'],
-            name : _result[i]['name'],
-            // source : _result[i][''],
-            unitprice: _result[i]['unitprice'],
-            urls:[_this.data.searchImgs[0]]
+          let _result = _data.result[0]['goods'] ; 
+          let _tmpData = [] ;
+          // console.log(  _result  ) ;
+          for(let i in _result)
+          {
+            _tmpData.push({
+              id : _result[i]['id'],
+              name : _result[i]['name'],
+              // source : _result[i][''],
+              unitprice: _result[i]['unitprice'],
+              urls:[_this.data.searchImgs[0]]
+            });
+          }
+
+          _this.setData({
+            good : _tmpData
           });
+
+          _this.setData({
+            showMask : false,
+          });
+
+          _this.setData({
+            showMore : false
+          });
+
+          // wx.hideLoading();
         }
+        else
+        {
+          wx.showToast({
+            title:"未找到该商品"
+          });
+          _this.setData({
+            showMask : false,
+          });
 
-        _this.setData({
-          good : _tmpData
-        });
-
-        _this.setData({
-          showMask : false,
-        });
-
-        _this.setData({
-          showMore : false
-        });
-
-        console.log( _this.data.showMore );
-
+          _this.setData({
+            searchImgs:''
+          });
+          
+        }
         wx.hideLoading();
       }
 
@@ -312,6 +341,15 @@ Page({
 
 
 
+  }
+
+  /**
+   * 清除以图搜图数据
+   */
+  ,clear()
+  {
+    this.init();
+    this.getData( this.data.ghsid );
   }
 
   /**
