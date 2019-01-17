@@ -274,18 +274,18 @@ Page({
   ,search()
   {
     wx.showLoading({title:"搜索中" , mask:true });
-    // console.log( "search" , this.data.searchImgs );
     let _this = this ;
+    console.log( "filepath" , _this.data.searchImgs[0] );
     // console.log(App.globalData.api+'/index/goods/searchGoodsByImage');
     wx.uploadFile({
       url : App.globalData.api+'/index/goods/searchGoodsByImage',
-      filePath:this.data.searchImgs[0],
+      filePath:_this.data.searchImgs[0],
       name:'image',
       formData:{
         ghsid: _this.data.ghsid
       },
       success(res){
-
+        console.error(res);
         let _data = JSON.parse(res.data)
         if( 0 == _data.status )
         {
