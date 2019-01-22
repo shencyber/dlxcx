@@ -25,11 +25,18 @@ Page({
    */
   onShow: function (options) {
     
+    // this.init();
+
     //加载待付款数据
     this.getList(this.data.currentpage,this.data.pagesize , 1);
 
   },
   
+  init(){
+    this.setData({
+
+    });
+  },
 
   handleChange({detail}){
     this.setData({
@@ -55,11 +62,21 @@ Page({
     this.getList(this.data.currentpage,this.data.pagesize , this.data.status);
   },
 
+  /**
+   * [more 加载更多]
+   * @return {[type]} [description]
+   */
   more(){
 
     ++this.data.currentpage;
     this.getList(this.data.currentpage,this.data.pagesize , this.data.status);
 
+  },
+
+  detail(e){
+    console.log("detail" , e );
+    let url = "../orderdetail/orderdetail?oid="+e.currentTarget.dataset.oid ;
+    wx.navigateTo({url:`../orderdetail/orderdetail?oid=${e.currentTarget.dataset.oid}`})
   },
 
   /**

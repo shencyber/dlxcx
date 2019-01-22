@@ -10,8 +10,7 @@
     "pages/xiadandetail/xiadandetail",
     "pages/feedback/feedback",
     "pages/searchimg/searchimg",
-    "pages/order/orderdetail",
-    "pages/order/orderdetail/orderdetail"
+    "pages/orderdetail/orderdetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -13,7 +13,7 @@
 </view>	
 
 
-<view wx:for="{{orders}}" wx:key="{{item.ghsid}}" wx:for-item="item" style="margin-bottom:20rpx;">
+<view wx:for="{{orders}}" wx:key="{{item.ghsid}}" wx:for-item="item" style="margin-bottom:20rpx;border:1px solid red;"  bindtap="detail" data-oid="{{item.id}}">
 
 
 	<i-card title="{{item.ghsname}}" full="true" extra="{{item.createtime}}" >

@@ -1,0 +1,62 @@
+<!--pages/orderdetail/orderdetail.wxml-->
+<view style="width: 100%;height:100rpx;line-height:100rpx;text-align: center;">{{detail.statustext}}</view>
+
+<i-panel title="商品信息">
+   
+</i-panel>
+
+<i-card>
+    <view slot="content">
+    	
+	    	<i-row  wx:for="{{detail.detail}}" wx:key="{{item.goodid}}" wx:for-index="index" wx:for-item="item">
+	    		<i-col span="6"   >
+	    			<image  model="scaleToFill" class="cover" src="{{item.urls[0]}}"></image>
+	    		</i-col>
+	    		<i-col span="18" >
+
+	    			<view style="width:100%;height:50rpx;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{item.name}}</view>
+	    			<!-- <view> -->
+    				<view style="text-align: right;" class="amount" >￥{{item.unitprice }} X {{ item.amount }} = {{item.unitprice*item.amount}}</view>
+	    			<!-- </view> -->
+	    				
+	    		</i-col>
+	    	</i-row>
+
+	    </view>
+
+	    <view slot="footer" >
+	    	<i-row >
+	    		<i-col span="12" offset="12">
+	    			<view style="text-align:right;font-weight: bold;font-size:30rpx;line-height: 30rpx;" class="amount">共计:￥{{detail.totalprice}}</view>
+	    		</i-col>
+	    	</i-row>
+	    </view>
+
+</i-card>
+
+
+
+<i-panel title="供货商信息">
+    <i-cell-group>
+    	<i-cell title="姓名" value="{{detail.ghsname}}"></i-cell>
+    	<i-cell title="手机" value="{{detail.phone}}"></i-cell>
+    </i-cell-group>
+</i-panel>
+
+<i-panel title="收件人信息">
+    <i-cell-group>
+    	<i-cell title="姓名" value="{{detail.receivername}}"></i-cell>
+    	<i-cell title="手机" value="{{detail.receiverphone}}"></i-cell>
+    	<i-cell title="地址" value="{{detail.address}}"></i-cell>
+    </i-cell-group>
+</i-panel>
+
+
+<i-panel title="订单信息">
+    <i-cell-group>
+    	<i-cell title="下单时间" value="{{detail.createtime}}"></i-cell>
+    	<i-cell title="订单编号" value="{{detail.ordercode}}"></i-cell>
+    </i-cell-group>
+</i-panel>
+
+<view style="width:100%;height:50rpx;"></view>	
