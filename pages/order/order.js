@@ -8,14 +8,16 @@ Page({
   data: {
     current:'tab1',
     currentpage:1,
-    pagesize:10,
+    pagesize:1,
     total:0,
     status:1,  
 
 
-    orders:''
+    orders:[],
 
+    showMore:false,
 
+    nothing:false
   },
 
   /**
@@ -31,7 +33,8 @@ Page({
 
   handleChange({detail}){
     this.setData({
-        current: detail.key
+        current: detail.key,
+        nothing:false
     });
     switch(detail.key)
     {
@@ -52,6 +55,13 @@ Page({
     this.getList(this.data.currentpage,this.data.pagesize , this.data.status);
   },
 
+  more(){
+
+    ++this.data.currentpage;
+    this.getList(this.data.currentpage,this.data.pagesize , this.data.status);
+
+  },
+
   /**
    * [getList 获取订单列表]
    * @param  {[type]} currentpage [当前页]
@@ -66,7 +76,7 @@ Page({
       console.log( res );
       if( 0 == res.data.status )
       {
-        let _res = res.data.result ;
+        // let _res = res.data.result ;
         // for( let i in _res )
         // {
         //   let _sum = 0;
@@ -77,10 +87,37 @@ Page({
         //   _res[i]['totalprice'] = _sum ;
         // }
 
-        console.log( res.data.result );
-        this.setData({
-          orders : res.data.result
-        });
+        // console.log( res.data.result );
+        if( res.data.result )
+        {
+
+          // let _res = this.data.orders ;
+          // for(let i in res.data.result)
+          // _res.push( res.data.result );
+
+          // console.log( _res );
+          this.setData({
+            orders : [...this.data.orders , ...res.data.result],
+            nothing:false
+          });
+
+          console.log( this.data.orders );
+
+          this.data.total = res.data.total ;
+
+          if( this.data.currentpage*this.data.pagesize >= this.data.total )
+          {
+            this.setData({showMore:false});
+          }
+          else
+          {
+            this.setData({showMore:true});
+          }
+        }
+        else
+        {
+            this.setData({showMore:false,nothing:true});
+        }
 
       }
     })

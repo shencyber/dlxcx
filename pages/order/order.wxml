@@ -6,16 +6,17 @@
     <i-tab key="tab3" title="已发货"></i-tab>
     <i-tab key="tab4" title="已取消"></i-tab>
 </i-tabs>
-<!-- <view wx:if="{{nothing}}" style="text-align: center;"> -->
-<!-- <view  style="text-align: center;">
-<image  src="/image/none.jpg" style="width:80%;height:350rpx;"></image>
-</view>	 -->
+
+<view wx:if="{{nothing}}" style="text-align: center;">
+	<!-- <view  style="text-align: center;"> -->
+	<image  src="/image/none.jpg" style="width:80%;height:350rpx;"></image>
+</view>	
 
 
 <view wx:for="{{orders}}" wx:key="{{item.ghsid}}" wx:for-item="item" style="margin-bottom:20rpx;">
 
 
-	<i-card title="{{item.ghsname}}" full="true" extra="" >
+	<i-card title="{{item.ghsname}}" full="true" extra="{{item.createtime}}" >
 	    <view slot="content">
 	    	
 	    	<i-row  wx:for="{{item.goods}}" wx:key="{{subitem.id}}" wx:for-index="subindex" wx:for-item="subitem">
@@ -48,6 +49,9 @@
 	
 
 </view>
+
+
+<i-button wx:if="{{showMore}}" bind:click="more" type="info" size="small">加载更多</i-button>
 
 </view>
 
