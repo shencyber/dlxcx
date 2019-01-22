@@ -1,2 +1,53 @@
 <!--miniprogram/pages/order/order.wxml-->
-<text>miniprogram/pages/order/order.wxml</text>
+<view class="box">
+<i-tabs current="{{ current }}" bindchange="handleChange">
+    <i-tab key="tab1" title="待付款"></i-tab>
+    <i-tab key="tab2" title="待发货"></i-tab>
+    <i-tab key="tab3" title="已发货"></i-tab>
+    <i-tab key="tab4" title="已取消"></i-tab>
+</i-tabs>
+<!-- <view wx:if="{{nothing}}" style="text-align: center;"> -->
+<!-- <view  style="text-align: center;">
+<image  src="/image/none.jpg" style="width:80%;height:350rpx;"></image>
+</view>	 -->
+
+
+<view wx:for="{{orders}}" wx:key="{{item.ghsid}}" wx:for-item="item" style="margin-bottom:20rpx;">
+
+
+	<i-card title="{{item.ghsname}}" full="true" extra="" >
+	    <view slot="content">
+	    	
+	    	<i-row  wx:for="{{item.goods}}" wx:key="{{subitem.id}}" wx:for-index="subindex" wx:for-item="subitem">
+	    		<i-col span="6"   >
+	    			<image  model="scaleToFill" class="cover" src="{{subitem.url}}"></image>
+	    		</i-col>
+	    		<i-col span="18" >
+
+	    			<view style="width:100%;height:50rpx;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{subitem.gname}}</view>
+	    			<!-- <view> -->
+    				<view style="text-align: right;" class="amount" >￥{{ subitem.unitprice }} X {{ subitem.amount }} = {{subitem.unitprice*subitem.amount}}</view>
+	    			<!-- </view> -->
+	    				
+	    		</i-col>
+	    	</i-row>
+
+	    </view>
+
+	    <view slot="footer" >
+	    	<i-row >
+	    		<i-col span="12" offset="12">
+	    			<view style="text-align:right;font-weight: bold;font-size:30rpx;line-height: 30rpx;" class="amount">共计:￥{{item.totalprice}}</view>
+	    		</i-col>
+	    	</i-row>
+	    </view>
+
+
+	</i-card>
+
+	
+
+</view>
+
+</view>
+

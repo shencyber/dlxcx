@@ -153,13 +153,14 @@ Page({
     // console.log(App.globalData.api+'/index/goods/searchGoodsByImage');
     wx.uploadFile({
       url : App.globalData.api+'/index/goods/searchGoodsByImage',
-      filePath:this.data.searchImgs[0],
+      filePath:_this.data.searchImgs[0],
       name:'image',
      
       success(res){
 
-        let _data = JSON.parse(res.data);
-        // console.log( "data" , res.data );
+        let _data = JSON.parse(res.data)
+        console.log( "_data" , res );
+
         if( 0 == _data.status )
         {
 
