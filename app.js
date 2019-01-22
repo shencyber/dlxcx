@@ -44,9 +44,9 @@ App({
     //购物车数据,数据结构[{gid:1,ghsid:2,amount:1},{gid:2,ghsid:2,amount:1}]
     cart:[
 
-      { gid: "1", gname: "name1", amount: 1, unitprice: "20", cover: "http://lovehezu.com/tp/public/uploads/5c164372c9f65.jpg",ghsid:1,ghsname:'找' },
-      { gid: "2", gname: "name2", amount: 1, unitprice: "20", cover: "http://lovehezu.com/tp/public/uploads/5c164372c9f65.jpg",ghsid:1,ghsname:'找' },
-      { gid: "31", gname: "name3", amount: 1, unitprice: "40", cover: "http://lovehezu.com/tp/public/uploads/5c164372c9f65.jpg",ghsid:2,ghsname:'张' },
+      // { gid: "1", gname: "name1", amount: 1, unitprice: "20", cover: "http://lovehezu.com/tp/public/uploads/5c164372c9f65.jpg",ghsid:1,ghsname:'找' },
+      // { gid: "2", gname: "name2", amount: 1, unitprice: "20", cover: "http://lovehezu.com/tp/public/uploads/5c164372c9f65.jpg",ghsid:1,ghsname:'找' },
+      // { gid: "31", gname: "name3", amount: 1, unitprice: "40", cover: "http://lovehezu.com/tp/public/uploads/5c164372c9f65.jpg",ghsid:2,ghsname:'张' },
       // { gid: "32", gname: "name4", amount: 1, unitprice: "40", cover: "http://lovehezu.com/tp/public/uploads/5c164372c9f65.jpg",ghsid:2,ghsname:'张' },
 
     ]  

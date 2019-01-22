@@ -1,2 +1,37 @@
 <!--pages/searchimg.wxml-->
-<text>pages/searchimg.wxml</text>
+
+<view class="box">
+
+<i-panel wx:for="{{goods}}" title="{{good.ghsname}}" wx:for-index="index" wx:for-item="good">
+
+
+
+
+<i-row style="width:100%;">
+
+<i-col   wx:for="{{good.goods}}" wx:for-index="subindex" wx:for-item="subgood" i-class="col-class" span="12" >
+
+<image  bindtap="toDetail" data-gid="{{subgood.id}}" data-ghsid="{{good.ghsid}}" data-ghsname="{{good.ghsname}}"  class="cover" src="{{urls}}"></image>
+
+<text class="name">{{subgood.name}}</text>
+
+<text class="price">￥{{subgood.unitprice}}</text>
+
+<view class="bt" bindtap="addToCart" data-index="{{index}}" data-subindex="{{subindex}}" ><i-icon  type="add" color="#fff" size="30"/></view>
+
+</i-col>
+
+
+</i-row>
+
+
+</i-panel>
+
+
+
+
+<i-toast id="toast" />
+
+
+
+</view>

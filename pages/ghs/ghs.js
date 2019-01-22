@@ -158,13 +158,10 @@ Page({
      
       success(res){
 
-        let _data = JSON.parse(res.data)
+        let _data = JSON.parse(res.data);
+        // console.log( "data" , res.data );
         if( 0 == _data.status )
         {
-
-          _this.setData({
-            good : _tmpData
-          });
 
           _this.setData({
             showMask : false,
@@ -177,21 +174,24 @@ Page({
           
           wx.hideLoading();
 
-          wx.navigateTo({url:`../searchimg/searchimg?goods=${res.data}`});
+          wx.navigateTo({url:`../searchimg/searchimg?goods=${res.data }&urls=${_this.data.searchImgs[0]}`});
           return ;
-          let _result = _data.result[0]['goods'] ; 
-          let _tmpData = [] ;
+          // let _result = _data.result[0]['goods'] ; 
+          // let _tmpData = [] ;
           // console.log(  _result  ) ;
-          for(let i in _result)
-          {
-            _tmpData.push({
-              id : _result[i]['id'],
-              name : _result[i]['name'],
-              // source : _result[i][''],
-              unitprice: _result[i]['unitprice'],
-              urls:[_this.data.searchImgs[0]]
-            });
-          }
+          // for(let i in _result)
+          // {
+          //   _tmpData.push({
+          //     id : _result[i]['id'],
+          //     name : _result[i]['name'],
+          //     // source : _result[i][''],
+          //     unitprice: _result[i]['unitprice'],
+          //     urls:[_this.data.searchImgs[0]]
+          //   });
+          // }
+
+          // console.log( "tmpData" , _tmpData );
+          return ;
 
           
 
