@@ -8,9 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-   
-    url:' ' ,
-    
+    urls:'',
     goods:[],
 
   }
@@ -24,15 +22,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   ,onLoad: function (option) {
-    console.log( option );
+    console.log( "option" ,option.goods );
     // return ;
 
     let res = JSON.parse(option.goods) ;
-    console.log( option.urls );
-
+    console.log( "res" , res );
+    
     this.setData({
       goods : res.result,
-      urls  : option.urls
+      urls  : option.urls?option.urls:''
     });
 
     console.log( "page load  ghsid" , this.data.goods);

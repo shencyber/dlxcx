@@ -4,7 +4,7 @@
 
 <view class="searchBar">
 	<image  wx:if="{{searchImgs[0]}}" src="{{searchImgs[0]}}" style="width:70rpx;height:70rpx;float:left; " />
-	<input class="input"  type="text" name="" placeholder="搜索"  />
+	<input class="input"  type="text"  onfirm-type="done" bindconfirm="getGoodsByKeyWord" placeholder="搜索"  />
 	<view wx:if="{{searchImgs[0]}}" bindtap="clear" style="float:right;padding:0 10rpx;"><i-icon type="close" size="25" /></view>
 	<image bindtap="toggleMask" class="searchicon" src="/image/searchicon.png" ></image>
 	

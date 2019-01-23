@@ -11,9 +11,11 @@
 
 <i-col   wx:for="{{good.goods}}" wx:for-index="subindex" wx:for-item="subgood" i-class="col-class" span="12" >
 
-<image  bindtap="toDetail" data-gid="{{subgood.id}}" data-ghsid="{{good.ghsid}}" data-ghsname="{{good.ghsname}}"  class="cover" src="{{urls}}"></image>
+<!-- <image  bindtap="toDetail" data-gid="{{subgood.id}}" data-ghsid="{{good.ghsid}}" data-ghsname="{{good.ghsname}}"  class="cover" src="{{url?url:subgood.urls[0]}}"></image> -->
 
-<text class="name">{{subgood.name}}</text>
+<image  bindtap="toDetail" data-gid="{{subgood.id}}" data-ghsid="{{good.ghsid}}" data-ghsname="{{good.ghsname}}"  class="cover" src="{{urls?urls:subgood.urls[0]}}"></image>
+
+<text class="name">{{subgood.name}}{{subgood.urls[0]}}</text>
 
 <text class="price">￥{{subgood.unitprice}}</text>
 

@@ -320,7 +320,8 @@ Page({
         else
         {
           wx.showToast({
-            title:"未找到该商品"
+            title:"未找到该商品",
+            duration:2000
           });
           _this.setData({
             showMask : false,
@@ -367,6 +368,46 @@ Page({
     // return false ;
   }
 
+  /**
+   *  根据关键词搜索商品
+   */
+  ,getGoodsByKeyWord(e)
+  {
+    console.log( e.detail.value );
+    if( !e.detail.value ) 
+    {
+      this.clear();
+      return ;
+    } 
+
+    App.api.getApi(
+      '/index/goods/getGoodsByKeyWordsApi',
+       {
+        ghsid : this.data.ghsid,
+        keyword:e.detail.value
+      }
+    )
+    .then( res=>{
+      console.log( res );
+      if( 0 == res.data.status )
+      {
+        if( !res.data.result.length )
+        {
+          wx.showToast({
+            title:"未找到该商品",
+            duration:2000
+          });
+        }
+        else
+        {
+          this.setData({ good : res.data.result });
+        }
+      }
+    })
+    .catch(err=>{
+      console.log( err );
+    })
+  }
 
   
 })

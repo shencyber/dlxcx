@@ -18,11 +18,12 @@ Page({
     showMask:false ,  //是否显示mask
     showMore:false ,  //是否显示【加载更多】
 
-
+    keyword:''
   },
 
 
   onShow(){
+    this.clear();
     this.getGhsList( 1 );
   },
 
@@ -225,13 +226,23 @@ Page({
 
   }
 
+  ,init(){
+    this.setData({
+      ghs:[],
+      searchImgs:'' , //需要搜索的图片
+      showMask:false ,  //是否显示mask
+      showMore:false ,  //是否显示【加载更多】
+       keyword:'' 
+    });
+  }
+
   /**
    * 清除以图搜图数据
    */
   ,clear()
   {
     this.init();
-    this.getData( this.data.ghsid );
+    this.getGhsList( 1 );
   }
 
   /**
@@ -247,6 +258,67 @@ Page({
   {
     // console.log(e)
     // return false ;
+  }
+
+
+
+   /**
+   *  根据关键词搜索商品
+   */
+  ,getGoodsByKeyWord(e)
+  {
+    console.log( e.detail.value );
+    if( !e.detail.value ) 
+    {
+      this.clear();
+      return ;
+    } 
+
+    wx.showLoading({title:"搜索中" , mask:true });
+    App.api.getApi(
+      '/index/goods/getGoodsByKeyWordsApi',
+       {
+        keyword:e.detail.value
+      }
+    )
+    .then( res=>{
+
+      // console.log( "res.data" , res.data );
+      if( 0 == res.data.status )
+      {
+        if( !res.data.result.length )
+        {
+          wx.showToast({
+            title:"未找到该商品",
+            duration:2000
+          });
+          wx.hideLoading();
+        }
+        else
+        {
+          wx.hideLoading();
+          
+          let _data = JSON.stringify(res.data);
+          wx.navigateTo({url:`../searchimg/searchimg?goods=${_data}`});
+
+        }
+      }
+      else
+      {
+        wx.showToast({
+            title:"未找到该商品",
+            duration:2000
+          });
+      }
+    })
+    .catch(err=>{
+      console.log( err );
+      wx.showToast({
+            title:"未找到该商品",
+            duration:2000
+          });
+      wx.hideLoading();
+    })
   }
 
 

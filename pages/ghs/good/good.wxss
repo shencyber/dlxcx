@@ -95,6 +95,7 @@
 .input{
 	float:left;
 	width:auto;
+	
 	height:70rpx;
 	text-indent:10rpx;
 }
@@ -102,5 +103,10 @@
 {
 	width : 70rpx;
 	height: 70rpx;
+	float:right;
+}
+
+
+.searchBt{
 	float:right;
 }
