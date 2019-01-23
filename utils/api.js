@@ -1,7 +1,7 @@
 // api.js
 
 // const URL = 'http://47.100.54.97:8080/jyjyzx'  //需要接入的api接口
-const URL = 'http://lovehezu.com/tp/index.php'  //需要接入的api接口
+const URL = 'https://lovehezu.com/tp/index.php'  //需要接入的api接口
 const fetch = require('./fetch.js')
 
 function getApi(path, params) {  // get请求
