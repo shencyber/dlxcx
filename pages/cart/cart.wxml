@@ -6,7 +6,7 @@
 </view>	
 
 
-<view wx:for="{{ghs}}" wx:key="{{item.ghsid}}" style="margin-bottom:20rpx;">
+<view wx:if="{{!nothing}}" wx:for="{{ghs}}" wx:key="{{item.ghsid}}" style="margin-bottom:20rpx;">
 
 	<!-- <i-panel title="{{item.ghsname}}">
 	    <view style="padding: 15px;">PANEL 内容区域</view>
