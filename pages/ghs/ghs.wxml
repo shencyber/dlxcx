@@ -14,7 +14,7 @@
 
 
 <i-cell-group>
-    <i-cell wx:for="{{ghs}}" title="{{item.name}}" is-link url="/pages/ghs/good/good?ghsid={{item.id}}&ghsname={{item.name}}"></i-cell>
+    <i-cell wx:for="{{ghs}}" title="{{item.wnickname}}" is-link url="/pages/ghs/good/good?ghsid={{item.id}}&ghsname={{item.wnickname}}"></i-cell>
 </i-cell-group>
 
 <!-- 

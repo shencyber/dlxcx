@@ -25,24 +25,39 @@ Page({
    */
   onShow: function (options) {
     
-    // this.init();
+    console.log( "status" , this.data.status );
+
+    this.init();
 
     //加载待付款数据
-    this.getList(this.data.currentpage,this.data.pagesize , 1);
+    this.getList(this.data.currentpage,this.data.pagesize , this.data.status);
 
   },
   
   init(){
     this.setData({
+      current:'tab1',
+      currentpage:1,
+      pagesize:1,
+      total:0,
+      status:1,  
 
+      orders:[],
+
+      showMore:false,
+
+      nothing:false
     });
   },
 
   handleChange({detail}){
+    this.init();
+
     this.setData({
         current: detail.key,
         nothing:false
     });
+    
     switch(detail.key)
     {
       case "tab1":
