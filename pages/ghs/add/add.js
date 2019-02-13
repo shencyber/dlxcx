@@ -34,7 +34,7 @@ Page({
       {
         this.data.ghsid = res.data.result[0]['id'];
         this.setData({
-          name : res.data.result[0]['name']
+          name : res.data.result[0]['wnickname']
         });
       }
       else
