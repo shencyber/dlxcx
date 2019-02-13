@@ -29,7 +29,7 @@ Page({
       }
     )
     .then(res=>{
-      console.log( res );
+      console.log( "details" , res );
       let _res = res.data.result ;
       switch( _res.status )
       {

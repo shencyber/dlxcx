@@ -16,7 +16,7 @@
 <view wx:for="{{orders}}" wx:key="{{item.ghsid}}" wx:for-item="item" style="margin-bottom:20rpx;border:1px solid #dddee1;"  bindtap="detail" data-oid="{{item.id}}">
 
 
-	<i-card title="{{item.ghsname}}" full="true" extra="{{item.createtime}}" >
+	<i-card title="{{item.ghsnickname}}" full="true" extra="{{item.createtime}}" >
 	    <view slot="content">
 	    	
 	    	<i-row  wx:for="{{item.goods}}" wx:key="{{subitem.id}}" wx:for-index="subindex" wx:for-item="subitem">

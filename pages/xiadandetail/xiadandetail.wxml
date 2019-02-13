@@ -3,12 +3,17 @@
 <i-card title="{{ghsname}}" >
     <view slot="content" style="padding:20rpx 0;font-weight:bold;text-align:center;"><span style="font-size:80rpx;line-height:80rpx;">￥{{totalPrice}}</span></view>
     <view slot="content" style="font-weight:bold;text-align:center;margin:30rpx 0;">应付总额</view>
+    <view slot="content" style="text-align:center;margin:30rpx 0;">(不包含运费)</view>
 </i-card>
 
 <i-panel title="收件人信息" >
-	<i-input value="{{ receiverName }}" bind:change="change" data-type="name" title="收件人姓名"  placeholder="名字" />
+	
+	<i-input type="textarea" value="{{ receiverAddress }}" bind:change="change" data-type="address"   placeholder="姓名、手机号、地址" max-length="200"/>
+
+	<!-- <i-input value="{{ receiverName }}" bind:change="change" data-type="name" title="收件人姓名"  placeholder="名字" />
     <i-input value="{{ receiverPhone }}" bind:change="change" data-type="phone" type="number" title="收件人姓名电话" placeholder="请输入手机号" />
-    <i-input value="{{ receiverAddress }}" bind:change="change" data-type="address" type="textarea" title="收件人地址" placeholder="请输入详细地址(最多50字)" maxlength="50" />
+    <i-input value="{{ receiverAddress }}" bind:change="change" data-type="address" type="textarea" title="收件人地址" placeholder="请输入详细地址(最多50字)" maxlength="50" /> -->
+
 </i-panel>
 
 <button  type="primary" bindtap="postOrder" style="width:80%;margin-top:30rpx;">确认下单</button>

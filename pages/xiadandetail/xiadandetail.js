@@ -15,8 +15,8 @@ Page({
     goods:[] , // 需要结算的商品信息
     totalPrice:0, //总价
 
-    receiverName:'' , //收件人姓名
-    receiverPhone:'' , //收件人手机号
+    // receiverName:'' , //收件人姓名
+    // receiverPhone:'' , //收件人手机号
     receiverAddress:'' , //地址
 
   },
@@ -84,10 +84,10 @@ Page({
   //debug  供货商id dlsid写死了
     let postData = {
       "ghsid":this.data.ghsid,
-      "ghsname" :this.data.ghsname ,
+      "ghsnickname" :this.data.ghsname ,
       "dlsid":"2",  //bug
-      "receivername":this.data.receiverName,
-      "receiverphone":this.data.receiverPhone,
+      // "receivername":this.data.receiverName,
+      // "receiverphone":this.data.receiverPhone,
       "address":this.data.receiverAddress,
       "totalprice":this.data.totalPrice,
       "totalfreight":0,
@@ -161,29 +161,30 @@ Page({
 
   ,checkPostData(){
     console.log( "check" );
-    if( !this.data.receiverName )
-    {
-        $Toast({
-              content: '填写收件人姓名',
-              type: 'error'
-          });
-        return false ;
-    }
+    // if( !this.data.receiverName )
+    // {
+    //     $Toast({
+    //           content: '填写收件人姓名',
+    //           type: 'error'
+    //       });
+    //     return false ;
+    // }
 
-    if( !this.data.receiverPhone || this.data.receiverPhone.length != 11 )
-    {
-        $Toast({
-              content: '收件人手机号格式错误',
-              type: 'error'
-          });
-        return false ;
-    }
+    // if( !this.data.receiverPhone || this.data.receiverPhone.length != 11 )
+    // {
+    //     $Toast({
+    //           content: '收件人手机号格式错误',
+    //           type: 'error'
+    //       });
+    //     return false ;
+    // }
 
     if( !this.data.receiverAddress )
     {
         $Toast({
-              content: '填写收件人地址',
-              type: 'error'
+              content: '填写收件人信息',
+              type: 'error',
+              duration:3
           });
         return false ;
     }
