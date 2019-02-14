@@ -31,10 +31,6 @@
       {
         "pagePath": "pages/cart/cart",
         "text": "购物车"
-      },
-      {
-        "pagePath": "pages/me/me",
-        "text": "我"
       }
     ]
   }

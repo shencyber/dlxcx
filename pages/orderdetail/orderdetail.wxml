@@ -38,17 +38,18 @@
 
 <i-panel title="供货商信息">
     <i-cell-group>
-    	<i-cell title="姓名" value="{{detail.ghsname}}"></i-cell>
-    	<i-cell title="手机" value="{{detail.phone}}"></i-cell>
+    	<i-cell title="昵称" value="{{detail.ghsnickname}}"></i-cell>
+    	<!-- <i-cell title="手机" value="{{detail.phone}}"></i-cell> -->
     </i-cell-group>
 </i-panel>
 
 <i-panel title="收件人信息">
-    <i-cell-group>
-    	<i-cell title="姓名" value="{{detail.receivername}}"></i-cell>
-    	<i-cell title="手机" value="{{detail.receiverphone}}"></i-cell>
-    	<i-cell title="地址" value="{{detail.address}}"></i-cell>
-    </i-cell-group>
+    <!-- <i-cell-group> -->
+    	<!-- <i-cell title="姓名" value="{{detail.receivername}}"></i-cell> -->
+    	<!-- <i-cell title="手机" value="{{detail.receiverphone}}"></i-cell> -->
+    	<!-- <i-cell value="{{detail.address}}"></i-cell> -->
+    <!-- </i-cell-group> -->
+    <view style="padding:0 16px;">{{detail.address}}</view>
 </i-panel>
 
 
